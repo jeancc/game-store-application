@@ -1,9 +1,8 @@
 package com.dynacode.store.gamerequest;
 
 import com.dynacode.store.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.dynacode.store.user.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,4 +19,8 @@ public class GameRequest extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private RequestStatus status; //pending, requested...
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

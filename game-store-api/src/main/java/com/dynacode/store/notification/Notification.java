@@ -1,7 +1,11 @@
 package com.dynacode.store.notification;
 
 import com.dynacode.store.common.BaseEntity;
+import com.dynacode.store.user.User;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +22,8 @@ public class Notification  extends BaseEntity {
     private String receiver;
     private NotificationLevel level;//high, medium, low
     private NotificationStatus status;//sended, reader...
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
