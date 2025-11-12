@@ -32,7 +32,7 @@ public class Game extends BaseEntity {
     @OneToMany(mappedBy = "game")
     private List<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "game_wishlist",
             joinColumns ={
@@ -52,7 +52,9 @@ public class Game extends BaseEntity {
     public void addWishList(WishList wishList)
     {
         if( ! this.wishLists.contains(wishList)) {
-            wishLists.add(wishList);
+
+            //Añadir las dos partes de la tabla que representa la relación N-N
+            this.wishLists.add(wishList);
             wishList.getGames().add(this);
         }
     }
@@ -65,7 +67,6 @@ public class Game extends BaseEntity {
             this.wishLists.remove(wishList);
             wishList.getGames().remove(this);
         }
-
     }
 
 
