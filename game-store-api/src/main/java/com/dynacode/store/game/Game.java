@@ -30,6 +30,7 @@ public class Game extends BaseEntity {
     private Category category;
 
     @OneToMany(mappedBy = "game")
+    ///@OrderBy(value = "content")
     private List<Comment> comments;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
