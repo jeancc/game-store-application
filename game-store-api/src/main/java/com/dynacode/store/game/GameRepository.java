@@ -50,4 +50,17 @@ public interface GameRepository
         """)
     @Modifying
     public void transformGamesTitleToUpperCase();
+
+    //deben coincidir con los nombres de lo que se pone en el interfaz 'GameRepresentation1'
+    @Query("""
+            select g.id, g.title as gameTitle from Game g
+            """)
+    List<GameRepresentation1> findAllGames();
+
+    @Query("""
+            select g.title as gameTitle,
+                     g.category.name as categoryName
+                  from Game g
+            """)
+    List<GameRepresentation2> findAllGames2();
 }

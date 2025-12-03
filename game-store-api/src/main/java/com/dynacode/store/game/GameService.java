@@ -168,4 +168,24 @@ public class GameService {
 
         return spec;
     }
+
+
+    /**
+     * Otro ejemplo: un ¿objeto? que realmente son campos de varios,
+     * lo podemos hacer con JPA Representation
+     *
+     * Podríamos hacer esto:
+     * 1.- Crear clase  (id, title, platforms)
+     * 2.- Llamar al repositorio para coger todos los juegos (paged)
+     * 3.- Mapear los objetos Game para devolver
+     *
+     * O mñás rápido: usar el sistema 'Representation' de jpa, que simplemente es una interfaz
+     */
+    public List<GameRepresentation1> getGamesWithRep1()
+    {
+        return  gameRepository.findAllGames();
+
+    }
+
+
 }
