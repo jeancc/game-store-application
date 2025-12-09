@@ -15,4 +15,5 @@ public interface GameRepository
         extends JpaRepository<Game, String>, JpaSpecificationExecutor<Game>
 {
 
+    boolean existsByTitle(String title);
 }

@@ -3,12 +3,15 @@ package com.dynacode.store.game;
 import com.dynacode.store.category.Category;
 import com.dynacode.store.comment.Comment;
 import com.dynacode.store.common.BaseEntity;
+import com.dynacode.store.platform.Console;
+import com.dynacode.store.platform.Platform;
 import com.dynacode.store.whishlist.WishList;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -17,11 +20,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Game extends BaseEntity {
+@SuperBuilder
+public class Game extends BaseEntity
+{
+    @Column(nullable = false, unique = true)
     private String title;
 
-    @Enumerated(EnumType.STRING)
-    private SupportedPlatforms supportedPlatforms;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Platform> platforms;
 
     private String coverPicture;
 
