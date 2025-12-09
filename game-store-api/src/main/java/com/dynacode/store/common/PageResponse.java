@@ -12,7 +12,7 @@ import java.util.List;
 public class PageResponse<T> {
 
     private List<T> content;
-    private int number; //número de página
+    private int pageNumber; //número de página
     private int size;//tamaño de la página
 
     private long totalElements;

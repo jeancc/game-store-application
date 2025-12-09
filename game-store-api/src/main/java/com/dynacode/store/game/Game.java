@@ -26,7 +26,7 @@ public class Game extends BaseEntity
     @Column(nullable = false, unique = true)
     private String title;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade =  {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
     private String coverPicture;
@@ -76,5 +76,16 @@ public class Game extends BaseEntity
         }
     }
 
+    public void addPlatform(Platform platform)
+    {
+        this.platforms.add(platform);
+        platform.getGames().add(this);
+    }
+
+    public void removePlatform(Platform platform)
+    {
+        this.platforms.remove(platform);
+        platform.getGames().remove(this);
+    }
 
 }
